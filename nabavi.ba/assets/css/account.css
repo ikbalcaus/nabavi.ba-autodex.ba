@@ -4,9 +4,33 @@
 
 .nabavi-login {
 	width: 100%;
-	max-width: 450px;
-	margin: 26px auto 35px;
+	max-width: 440px;
+	margin: 18px auto 36px;
+	padding: 24px;
 	flex: 1 1 100%;
+	background: #fff;
+	border: 1px solid var(--nabavi-border);
+	border-radius: var(--nabavi-radius);
+}
+
+.nabavi-login__head {
+	margin: 0 0 20px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid var(--nabavi-border);
+}
+
+.nabavi-login__eyebrow {
+	display: block;
+	margin-bottom: 6px;
+	color: var(--nabavi-muted);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1;
+}
+
+.nabavi-login__title {
+	margin: 0;
+	font-size: 24px;
 }
 
 .woocommerce .nabavi-login form.login,
@@ -23,15 +47,15 @@
 }
 
 .nabavi-login .woocommerce-form-row {
-	margin: 0 0 20px;
+	margin: 0 0 15px;
 }
 
 .nabavi-login label {
 	display: block;
-	margin-bottom: 7px;
-	color: var(--nabavi-text);
-	font-size: 16px;
-	font-weight: 400;
+	margin-bottom: 5px;
+	color: var(--nabavi-heading);
+	font-size: 13px;
+	font-weight: 500;
 	line-height: 1.4;
 }
 
@@ -41,21 +65,22 @@
 .nabavi-login input[type="text"],
 .nabavi-login input[type="email"],
 .nabavi-login input[type="password"] {
-	height: 42px;
-	min-height: 42px;
-	padding: 8px 12px;
-	border: 1px solid #D9DEE4 !important;
-	border-radius: 3px;
+	height: 46px;
+	min-height: 46px;
+	padding: 10px 14px;
+	border: 1px solid var(--nabavi-border-strong) !important;
+	border-radius: var(--nabavi-radius-md);
 	background: #fff !important;
 	color: var(--nabavi-text);
-	font-size: 15px;
+	font-size: 14px;
 	box-shadow: none;
 }
 
 .nabavi-login input[type="text"]:focus,
 .nabavi-login input[type="email"]:focus,
 .nabavi-login input[type="password"]:focus {
-	border-color: var(--nabavi-orange);
+	border-color: var(--nabavi-orange) !important;
+	box-shadow: var(--nabavi-ring);
 }
 
 .nabavi-login .password-input {
@@ -66,13 +91,13 @@
 
 .nabavi-login .password-input input {
 	width: 100%;
-	padding-right: 44px;
+	padding-right: 42px !important;
 }
 
 .nabavi-login .show-password-input {
 	position: absolute;
 	top: 50%;
-	right: 5px;
+	right: 4px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -80,14 +105,20 @@
 	height: 34px;
 	padding: 0;
 	border: 0;
+	border-radius: var(--nabavi-radius-sm);
 	background: transparent;
-	color: var(--nabavi-orange);
+	color: var(--nabavi-muted);
 	transform: translateY(-50%);
 }
 
+.nabavi-login .show-password-input:hover {
+	background: var(--nabavi-panel);
+	color: var(--nabavi-orange-dark);
+}
+
 .nabavi-login .show-password-input svg {
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 }
 
 .nabavi-login .show-password-input::before,
@@ -98,17 +129,17 @@
 
 .nabavi-login__row {
 	display: block;
-	margin: 0 0 20px;
+	margin: 0 0 15px;
 	padding: 0;
 }
 
 .nabavi-login .woocommerce-form__label-for-checkbox {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
-	margin: 0 0 20px;
+	gap: 7px;
+	margin: 0 0 15px;
 	color: var(--nabavi-text);
-	font-size: 16px;
+	font-size: 13px;
 	font-weight: 400;
 	line-height: 1.4;
 	cursor: pointer;
@@ -125,38 +156,40 @@
 .nabavi-login .woocommerce-form-register__submit {
 	display: flex;
 	width: 100%;
-	min-height: 40px;
+	min-height: 46px;
 	margin: 0;
-	padding: 8px 20px;
-	font-size: 15px;
+	padding: 10px 18px;
+	border-radius: var(--nabavi-radius-md);
+	font-size: 14px;
 	font-weight: 500;
 }
 
 .nabavi-login .woocommerce-LostPassword {
-	margin: 20px 0 0;
+	margin: 14px 0 0;
 	padding: 0;
-	font-size: 16px;
+	font-size: 13px;
 }
 
 .nabavi-login .woocommerce-LostPassword a {
-	color: var(--nabavi-orange);
+	color: var(--nabavi-orange-dark);
 	font-weight: 400;
-	text-decoration: none;
+	text-decoration: underline;
+	text-underline-offset: 3px;
 }
 
 .nabavi-login .woocommerce-LostPassword a:hover {
-	color: var(--nabavi-orange-dark);
+	color: var(--nabavi-orange-deep);
 }
 
 .nabavi-register {
-	margin-top: 45px;
-	padding-top: 35px;
-	border-top: 1px solid #E5E8EC;
+	margin-top: 22px;
+	padding-top: 20px;
+	border-top: 1px solid var(--nabavi-border);
 }
 
 .nabavi-register__title {
-	margin: 0 0 22px;
-	font-size: 24px;
+	margin: 0 0 16px;
+	font-size: 20px;
 }
 
 .nabavi-login .woocommerce-privacy-policy-text {
@@ -168,34 +201,36 @@
    -------------------------------------------------------------------------- */
 
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-Addresses h3 {
-	font-size: 18px;
+	font-size: 15px;
 }
 
 .woocommerce-account .woocommerce-MyAccount-content address {
 	margin: 0;
+	color: var(--nabavi-text);
 	font-style: normal;
 	line-height: 1.7;
 }
 
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAccountForm fieldset {
-	margin: 25px 0 0;
-	padding: 20px;
-	border: 1px solid #E5E8EC;
-	border-radius: 4px;
+	margin: 20px 0 0;
+	padding: 16px;
+	border: 1px solid var(--nabavi-border);
+	border-radius: var(--nabavi-radius-md);
+	background: var(--nabavi-panel);
 }
 
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAccountForm legend {
 	padding: 0 8px;
 	color: var(--nabavi-heading);
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: 700;
 }
 
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAccountForm em {
 	display: block;
-	margin-top: 4px;
+	margin-top: 3px;
 	color: var(--nabavi-muted);
-	font-size: 13px;
+	font-size: 12px;
 	font-style: normal;
 }
 
@@ -209,19 +244,20 @@
 
 @media (max-width: 767px) {
 	.nabavi-login {
-		margin-top: 15px;
-		margin-bottom: 25px;
+		margin-top: 12px;
+		margin-bottom: 24px;
+		padding: 18px;
 	}
 
-	.nabavi-login label {
-		font-size: 15px;
+	.nabavi-login__title {
+		font-size: 22px;
 	}
 
 	.nabavi-login .woocommerce-form__label-for-checkbox {
-		font-size: 15px;
+		font-size: 12.5px;
 	}
 
 	.nabavi-login .woocommerce-LostPassword {
-		font-size: 15px;
+		font-size: 12.5px;
 	}
 }

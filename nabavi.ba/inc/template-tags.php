@@ -203,6 +203,7 @@ function nabavi_header_actions() {
 
 		<a class="nabavi-header__cart" href="<?php echo esc_url( nabavi_get_cart_url() ); ?>" aria-label="<?php esc_attr_e( 'Korpa', 'nabavi' ); ?>">
 			<?php echo nabavi_get_icon( 'cart' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<span class="nabavi-header__cart-label"><?php esc_html_e( 'Korpa', 'nabavi' ); ?></span>
 			<span class="nabavi-cart-count"><?php echo esc_html( $cart_count ); ?></span>
 		</a>
 

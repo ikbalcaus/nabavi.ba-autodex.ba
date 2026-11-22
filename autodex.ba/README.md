@@ -29,7 +29,8 @@ visual language:
      the WooCommerce page options;
    - sets the currency to **BAM**, decimal comma and thousands dot;
    - sets product permalinks to `/proizvod/...` and category base to `/shop`;
-   - creates the 17 curated top-level product categories used by the homepage;
+   - creates the 17 curated homepage product categories plus the `veliki-servis`
+     and `mali-servis` service categories;
    - enables Cash on Delivery (`Plaćanje pouzećem`);
    - creates the `O nama` and `Kontakt` pages with their page templates.
 5. Import products through *Products → Import* (or copy the live database).
@@ -57,6 +58,21 @@ Category and service data live in `inc/template-tags.php`
 (`autodex_get_curated_categories()`, `autodex_get_services()`), so they can be
 changed without touching the template.
 
+## Service and inquiry pages
+
+The theme ensures these pages exist, are published and use the localized slugs:
+
+| Page | Content |
+| --- | --- |
+| `/veliki-servis/` | Inquiry form + products from the `veliki-servis` product category |
+| `/mali-servis/` | Inquiry form + products from the `mali-servis` product category |
+| `/reparacija-turbina/` | Inquiry form |
+| `/posaljite-upit-za-vase-vozilo/` | General vehicle inquiry form |
+
+The forms collect phone, chassis number (VIN), a message and an optional
+registration image or PDF (max 5 MB), then email the site's contact recipient.
+The handler and page repair logic live in `inc/inquiry.php`.
+
 ## Structure
 
 ```
@@ -74,6 +90,7 @@ autodex.ba/
 │   ├── translations.php            Bosnian WooCommerce strings
 │   ├── woocommerce.php             Store setup, loops, filters, account endpoints
 │   ├── shortcodes.php              Breadcrumb, cart, products and categories shortcodes
+│   ├── inquiry.php                 Service/inquiry forms, uploads and page setup
 │   └── contact.php                 Native contact form (replaces WPForms)
 ├── snippets/
 │   ├── brand-cijene.php            Brand markup pricing + low-profit cleanup

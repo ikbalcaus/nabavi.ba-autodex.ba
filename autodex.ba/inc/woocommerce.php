@@ -127,7 +127,61 @@ function autodex_cart_needs_shipping() {
  * ---------------------------------------------------------------------- */
 
 /**
- * Create or rename a WooCommerce page.
+ * Normalize a WooCommerce store page.
+ *
+ * @param int    $page_id Page ID.
+ * @param string $slug    Desired slug.
+ * @param string $title   Desired title.
+ * @param string $content Desired shortcode content.
+ * @return int
+ */
+function autodex_prepare_store_page( $page_id, $slug, $title, $content = '' ) {
+	$page = get_post( $page_id );
+
+	if ( ! $page || 'page' !== $page->post_type ) {
+		return 0;
+	}
+
+	if ( 'trash' === $page->post_status ) {
+		wp_untrash_post( $page_id );
+		$page = get_post( $page_id );
+	}
+
+	$update = array( 'ID' => $page_id );
+
+	if ( 'publish' !== $page->post_status ) {
+		$update['post_status'] = 'publish';
+	}
+
+	if ( $page->post_name !== $slug ) {
+		$update['post_name'] = $slug;
+	}
+
+	$default_titles = array( 'Cart', 'Checkout', 'My account', 'Shop', 'Korpa', 'Naplata', 'Moj račun' );
+
+	if ( in_array( $page->post_title, $default_titles, true ) && $page->post_title !== $title ) {
+		$update['post_title'] = $title;
+	}
+
+	if ( $content && ( '' === trim( $page->post_content ) || false !== strpos( $page->post_content, 'wp:woocommerce/' ) || false !== strpos( $page->post_content, 'elementor' ) ) ) {
+		$update['post_content'] = $content;
+	}
+
+	if ( count( $update ) > 1 ) {
+		wp_update_post( $update );
+	}
+
+	$current_template = (string) get_page_template_slug( $page_id );
+
+	if ( $current_template && false !== strpos( $current_template, 'elementor' ) ) {
+		delete_post_meta( $page_id, '_wp_page_template' );
+	}
+
+	return $page_id;
+}
+
+/**
+ * Create, restore or rename a WooCommerce page.
  *
  * @param string $option  WooCommerce option name.
  * @param string $slug    Desired slug.
@@ -136,50 +190,51 @@ function autodex_cart_needs_shipping() {
  * @return int
  */
 function autodex_ensure_store_page( $option, $slug, $title, $content = '' ) {
-	$page_id = (int) get_option( $option );
-	$page    = $page_id ? get_post( $page_id ) : null;
+	$page_id     = (int) get_option( $option );
+	$option_page = $page_id ? get_post( $page_id ) : null;
 
-	if ( $page && 'page' === $page->post_type ) {
-		$update = array();
+	// 1. A published page already uses the desired slug.
+	$desired = get_page_by_path( $slug );
 
-		$default_slugs = array( 'cart', 'checkout', 'my-account', 'shop' );
-
-		if ( $page->post_name !== $slug && in_array( $page->post_name, $default_slugs, true ) ) {
-			$update['post_name'] = $slug;
-		}
-
-		$default_titles = array( 'Cart', 'Checkout', 'My account', 'Shop', 'Korpa', 'Naplata', 'Moj račun' );
-
-		if ( in_array( $page->post_title, $default_titles, true ) && $page->post_title !== $title ) {
-			$update['post_title'] = $title;
-		}
-
-		if ( $content && ( false !== strpos( $page->post_content, 'wp:woocommerce/' ) || false !== strpos( $page->post_content, 'elementor' ) || '' === trim( $page->post_content ) ) ) {
-			$update['post_content'] = $content;
-		}
-
-		if ( ! empty( $update ) ) {
-			$update['ID'] = $page_id;
-			wp_update_post( $update );
-		}
-
-		$current_template = (string) get_page_template_slug( $page_id );
-
-		if ( $current_template && false !== strpos( $current_template, 'elementor' ) ) {
-			delete_post_meta( $page_id, '_wp_page_template' );
-		}
-
-		return $page_id;
+	if ( $desired && 'publish' === $desired->post_status ) {
+		update_option( $option, $desired->ID );
+		autodex_prepare_store_page( $desired->ID, $slug, $title, $content );
+		return (int) $desired->ID;
 	}
 
-	$existing = get_page_by_path( $slug );
+	// 2. Any page with the desired slug, including drafts and trashed pages.
+	$slug_pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'trash' ),
+			'name'           => $slug,
+			'posts_per_page' => 1,
+			'orderby'        => 'ID',
+			'order'          => 'ASC',
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+		)
+	);
 
-	if ( $existing ) {
-		update_option( $option, $existing->ID );
-		return (int) $existing->ID;
+	$target_id = ! empty( $slug_pages ) ? (int) $slug_pages[0] : 0;
+
+	// 3. Fall back to the page currently stored in the WooCommerce option.
+	if ( ! $target_id && $option_page && 'page' === $option_page->post_type ) {
+		$target_id = $page_id;
 	}
 
-	$page_id = wp_insert_post(
+	if ( $target_id ) {
+		$target_id = autodex_prepare_store_page( $target_id, $slug, $title, $content );
+
+		if ( $target_id ) {
+			update_option( $option, $target_id );
+		}
+
+		return $target_id;
+	}
+
+	// 4. Nothing usable exists: create a fresh published page.
+	$new_id = wp_insert_post(
 		array(
 			'post_type'    => 'page',
 			'post_status'  => 'publish',
@@ -189,26 +244,33 @@ function autodex_ensure_store_page( $option, $slug, $title, $content = '' ) {
 		)
 	);
 
-	if ( $page_id && ! is_wp_error( $page_id ) ) {
-		update_option( $option, $page_id );
-		return (int) $page_id;
+	if ( $new_id && ! is_wp_error( $new_id ) ) {
+		update_option( $option, $new_id );
+		return (int) $new_id;
 	}
 
 	return 0;
 }
 
 /**
- * Configure the store the first time the theme runs with WooCommerce.
+ * Ensure all WooCommerce store pages exist, are published and use the theme slugs.
  */
-function autodex_setup_store() {
-	if ( '4' === get_option( 'autodex_store_setup_version' ) ) {
-		return;
-	}
-
+function autodex_repair_store_pages() {
 	autodex_ensure_store_page( 'woocommerce_shop_page_id', 'shop', 'Shop' );
 	autodex_ensure_store_page( 'woocommerce_cart_page_id', 'korpa', 'Korpa', '[woocommerce_cart]' );
 	autodex_ensure_store_page( 'woocommerce_checkout_page_id', 'naplata', 'Naplata', '[woocommerce_checkout]' );
 	autodex_ensure_store_page( 'woocommerce_myaccount_page_id', 'moj-racun', 'Moj račun', '[woocommerce_my_account]' );
+}
+
+/**
+ * Configure the store the first time the theme runs with WooCommerce.
+ */
+function autodex_setup_store() {
+	if ( '5' === get_option( 'autodex_store_setup_version' ) ) {
+		return;
+	}
+
+	autodex_repair_store_pages();
 
 	update_option( 'woocommerce_currency', 'BAM' );
 	update_option( 'woocommerce_currency_pos', 'right_space' );
@@ -248,12 +310,51 @@ function autodex_setup_store() {
 
 	update_option( 'woocommerce_permalinks', $permalinks );
 
-	update_option( 'autodex_store_setup_version', '4', false );
+	update_option( 'autodex_store_setup_version', '5', false );
 	flush_rewrite_rules();
 }
 add_action( 'init', 'autodex_setup_store', 20 );
 add_action( 'after_switch_theme', 'autodex_setup_store', 30 );
 add_action( 'woocommerce_activated_plugin', 'autodex_setup_store', 30 );
+
+/**
+ * Repair the store pages when a WooCommerce option points to a missing,
+ * unpublished or wrongly-slugged page. Runs at most once every 12 hours.
+ */
+function autodex_maybe_repair_store_pages() {
+	if ( wp_installing() || get_transient( 'autodex_store_pages_ok' ) ) {
+		return;
+	}
+
+	$pages = array(
+		'woocommerce_shop_page_id'      => 'shop',
+		'woocommerce_cart_page_id'      => 'korpa',
+		'woocommerce_checkout_page_id'  => 'naplata',
+		'woocommerce_myaccount_page_id' => 'moj-racun',
+	);
+
+	$valid = true;
+
+	foreach ( $pages as $option => $slug ) {
+		$page_id = (int) get_option( $option );
+		$page    = $page_id ? get_post( $page_id ) : null;
+
+		if ( ! $page || 'page' !== $page->post_type || 'publish' !== $page->post_status || $page->post_name !== $slug ) {
+			$valid = false;
+			break;
+		}
+	}
+
+	if ( $valid ) {
+		set_transient( 'autodex_store_pages_ok', 1, 12 * HOUR_IN_SECONDS );
+		return;
+	}
+
+	autodex_repair_store_pages();
+	flush_rewrite_rules( false );
+	set_transient( 'autodex_store_pages_ok', 1, 12 * HOUR_IN_SECONDS );
+}
+add_action( 'init', 'autodex_maybe_repair_store_pages', 21 );
 
 /* -------------------------------------------------------------------------
  * Search

@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .nabavi-page-wrap {
-	padding-bottom: 30px;
+	padding-bottom: 36px;
 }
 
 .nabavi-page {
@@ -11,22 +11,46 @@
 }
 
 .nabavi-breadcrumbs--page {
-	margin: 0 0 22px;
+	margin: 0 0 14px;
+}
+
+.nabavi-page-head {
+	margin: 0 0 24px;
+}
+
+.nabavi-page-head__eyebrow {
+	display: block;
+	margin-bottom: 8px;
+	color: var(--nabavi-orange-dark);
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: .02em;
+	line-height: 1;
+	text-transform: uppercase;
 }
 
 .nabavi-page__title {
-	margin: 0 0 25px;
-	font-size: 34px;
+	margin: 0 0 10px;
+	font-size: 32px;
+	letter-spacing: -.015em;
+}
+
+.nabavi-page-head__lead {
+	max-width: 640px;
+	margin: 0;
+	color: var(--nabavi-muted);
+	font-size: 15px;
+	line-height: 1.7;
 }
 
 .nabavi-about .nabavi-prose {
-	max-width: 100%;
-	font-size: 16px;
+	max-width: 760px;
+	font-size: 15.5px;
 	line-height: 1.8;
 }
 
 .nabavi-about .nabavi-prose p {
-	margin-bottom: 1.25em;
+	margin-bottom: 1.2em;
 }
 
 /* --------------------------------------------------------------------------
@@ -35,35 +59,103 @@
 
 .nabavi-contact-layout {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-	gap: 40px;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+	gap: 24px;
 	align-items: start;
-	margin-top: 5px;
+	margin-top: 0;
 }
 
 .nabavi-contact-layout__form {
 	min-width: 0;
-	max-width: 560px;
+	max-width: 620px;
+}
+
+.nabavi-contact-cards {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+	margin-bottom: 14px;
+}
+
+.nabavi-contact-card {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 13px;
+	border: 1px solid var(--nabavi-border);
+	border-radius: var(--nabavi-radius-md);
+	background: #fff;
+	transition: border-color var(--nabavi-transition), box-shadow var(--nabavi-transition);
+}
+
+.nabavi-contact-card:hover {
+	border-color: var(--nabavi-border-strong);
+	box-shadow: var(--nabavi-shadow-sm);
+}
+
+.nabavi-contact-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 38px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	background: var(--nabavi-orange-soft);
+	color: var(--nabavi-orange-dark);
+}
+
+.nabavi-contact-card__icon svg {
+	width: 17px;
+	height: 17px;
+}
+
+.nabavi-contact-card__text {
+	min-width: 0;
+}
+
+.nabavi-contact-card__text small {
+	display: block;
+	margin-bottom: 1px;
+	color: var(--nabavi-muted);
+	font-size: 11.5px;
+	font-weight: 400;
+	line-height: 1.2;
+}
+
+.nabavi-contact-card__text strong {
+	display: block;
+	overflow: hidden;
+	color: var(--nabavi-heading);
+	font-size: 13.5px;
+	font-weight: 500;
+	line-height: 1.4;
+	text-overflow: ellipsis;
 }
 
 .nabavi-contact-intro {
-	margin-bottom: 22px;
+	margin-bottom: 18px;
+	font-size: 14.5px;
 }
 
 .nabavi-contact-form {
 	width: 100%;
+	padding: 20px;
+	border: 1px solid var(--nabavi-border);
+	border-radius: var(--nabavi-radius);
+	background: #fff;
 }
 
 .nabavi-contact-form .nabavi-form-row {
-	margin: 0 0 20px;
+	margin: 0 0 15px;
 	padding: 0;
 }
 
 .nabavi-contact-form .nabavi-form-row--two {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 12px;
-	margin: 0 0 20px;
+	gap: 10px;
+	margin: 0 0 15px;
 	padding: 0;
 	border: 0;
 }
@@ -71,25 +163,25 @@
 .nabavi-contact-form .nabavi-form-row--two legend {
 	display: block;
 	width: 100%;
-	margin: 0 0 8px;
+	margin: 0 0 6px;
 	padding: 0;
 	color: var(--nabavi-heading);
-	font-size: 16px;
-	font-weight: 700;
+	font-size: 13px;
+	font-weight: 500;
 	line-height: 1.4;
 }
 
 .nabavi-contact-form .nabavi-form-row--two p {
-	flex: 1 1 calc(50% - 6px);
+	flex: 1 1 calc(50% - 5px);
 	margin: 0;
 }
 
 .nabavi-contact-form label {
 	display: block;
-	margin: 0 0 8px;
+	margin: 0 0 6px;
 	color: var(--nabavi-heading);
-	font-size: 16px;
-	font-weight: 700;
+	font-size: 13px;
+	font-weight: 500;
 	line-height: 1.4;
 }
 
@@ -97,35 +189,20 @@
 	color: var(--nabavi-orange);
 }
 
-.nabavi-contact-form input[type="text"],
-.nabavi-contact-form input[type="email"],
-.nabavi-contact-form input[type="tel"] {
-	height: 40px;
-	min-height: 40px;
-	padding: 8px 12px;
-	border: 1px solid #D9DEE4;
-	border-radius: 3px;
-	font-size: 15px;
-}
-
 .nabavi-contact-form textarea {
-	min-height: 160px;
-	padding: 10px 12px;
-	border: 1px solid #D9DEE4;
-	border-radius: 3px;
-	font-size: 15px;
+	min-height: 150px;
 }
 
 .nabavi-contact-form .nabavi-form-submit {
-	margin: 0;
+	margin: 2px 0 0;
 }
 
 .nabavi-contact-form .nabavi-form-submit button {
 	width: 100%;
-	min-height: 40px;
-	padding: 8px 20px;
-	font-size: 15px;
-	font-weight: 500;
+	min-height: 46px;
+	padding: 11px 20px;
+	font-size: 14px;
+	border-radius: var(--nabavi-radius-md);
 }
 
 .nabavi-hp {
@@ -137,17 +214,20 @@
 }
 
 .nabavi-contact-layout__map {
+	position: sticky;
+	top: 140px;
 	min-width: 0;
 	width: 100%;
-	background: #E9EDF0;
-	border-radius: 4px;
+	border: 1px solid var(--nabavi-border);
+	border-radius: var(--nabavi-radius);
+	background: var(--nabavi-panel);
 	overflow: hidden;
 }
 
 .nabavi-contact-layout__map iframe {
 	display: block;
 	width: 100%;
-	min-height: 470px;
+	min-height: 540px;
 	border: 0;
 }
 
@@ -158,11 +238,15 @@
 @media (max-width: 900px) {
 	.nabavi-contact-layout {
 		grid-template-columns: 1fr;
-		gap: 30px;
+		gap: 22px;
 	}
 
 	.nabavi-contact-layout__form {
 		max-width: 100%;
+	}
+
+	.nabavi-contact-layout__map {
+		position: static;
 	}
 
 	.nabavi-contact-layout__map iframe {
@@ -172,23 +256,34 @@
 
 @media (max-width: 767px) {
 	.nabavi-page-wrap {
-		padding-top: 20px;
+		padding-top: 18px;
+	}
+
+	.nabavi-page-head {
+		margin-bottom: 20px;
 	}
 
 	.nabavi-page__title {
-		font-size: 28px;
+		font-size: 26px;
 	}
 
-	.nabavi-contact-form .nabavi-form-row--two {
-		gap: 10px;
+	.nabavi-page-head__lead {
+		font-size: 14px;
+	}
+
+	.nabavi-contact-cards {
+		grid-template-columns: 1fr;
+	}
+
+	.nabavi-contact-form {
+		padding: 14px;
 	}
 
 	.nabavi-contact-form .nabavi-form-row--two p {
 		flex: 1 1 100%;
 	}
 
-	.nabavi-contact-form label,
-	.nabavi-contact-form .nabavi-form-row--two legend {
-		font-size: 15px;
+	.nabavi-contact-layout__map iframe {
+		min-height: 300px;
 	}
 }

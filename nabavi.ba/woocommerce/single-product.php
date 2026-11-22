@@ -34,6 +34,7 @@ while ( have_posts() ) :
 						<?php
 						the_title( '<h1 class="product_title entry-title">', '</h1>' );
 						woocommerce_template_single_price();
+						woocommerce_template_single_excerpt();
 						?>
 
 						<div class="nabavi-single-product__divider" role="presentation"></div>

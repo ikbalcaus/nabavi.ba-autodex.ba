@@ -45,6 +45,15 @@ defined( 'ABSPATH' ) || exit;
 					?>
 				</div>
 
+				<div class="autodex-footer__categories">
+					<h2 class="autodex-footer__title"><?php esc_html_e( 'Kategorije', 'autodex' ); ?></h2>
+					<ul class="autodex-footer__cat-list">
+						<?php foreach ( autodex_get_curated_categories() as $footer_category ) : ?>
+							<li><a href="<?php echo esc_url( $footer_category['url'] ); ?>"><?php echo esc_html( $footer_category['label'] ); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+
 				<div class="autodex-footer__contact">
 					<h2 class="autodex-footer__title"><?php esc_html_e( 'Kontakt informacije', 'autodex' ); ?></h2>
 					<ul class="autodex-footer__contact-list">

@@ -12,13 +12,20 @@ get_header();
 <div id="page-wrapper" class="nabavi-shop-wrap">
 	<div id="shop-sidebar-overlay" class="sidebar-overlay"></div>
 
+	<?php nabavi_breadcrumbs( array( 'class' => 'nabavi-breadcrumbs--shop' ) ); ?>
+
+	<div class="nabavi-shop-head">
+		<h1 class="nabavi-shop-head__title"><?php echo esc_html( woocommerce_page_title( false ) ); ?></h1>
+		<?php if ( is_product_taxonomy() && term_description() ) : ?>
+			<div class="nabavi-shop-head__desc"><?php echo wp_kses_post( term_description() ); ?></div>
+		<?php endif; ?>
+	</div>
+
 	<div class="custom-shop-wrapper nabavi-shop">
 		<aside id="custom-shop-sidebar" class="shop-sidebar" aria-label="<?php esc_attr_e( 'Filteri', 'nabavi' ); ?>">
 			<div class="sidebar-close-wrapper">
 				<button id="close-mobile-filters" class="sidebar-close-btn" type="button" aria-label="<?php esc_attr_e( 'Zatvori filtere', 'nabavi' ); ?>">&times;</button>
 			</div>
-
-			<?php nabavi_breadcrumbs( array( 'class' => 'nabavi-breadcrumbs--shop' ) ); ?>
 
 			<?php
 			nabavi_render_price_filter();
@@ -44,6 +51,8 @@ get_header();
 			<?php endif; ?>
 
 			<div class="shop-top-bar">
+				<?php woocommerce_result_count(); ?>
+
 				<div class="shop-sorting">
 					<span class="sort-label"><?php esc_html_e( 'Sortiraj po:', 'nabavi' ); ?></span>
 					<?php woocommerce_catalog_ordering(); ?>

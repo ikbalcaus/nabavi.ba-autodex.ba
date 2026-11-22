@@ -499,16 +499,16 @@ add_filter( 'woocommerce_endpoint_edit-account_title', 'nabavi_account_endpoint_
 /**
  * Product stock line on the single product page.
  *
- * Mirrors the original store, which displays the product name in place of
- * the stock status.
- *
  * @param string     $html    Stock HTML.
  * @param WC_Product $product Product.
  * @return string
  */
 function nabavi_product_stock_html( $html, $product ) {
 	if ( is_product() && $product instanceof WC_Product ) {
-		return '<p class="stock in-stock">' . esc_html( $product->get_name() ) . '</p>';
+		$in_stock = $product->is_in_stock();
+		$label    = $in_stock ? __( 'Na stanju', 'nabavi' ) : nabavi_out_of_stock_label();
+
+		return '<p class="stock ' . ( $in_stock ? 'in-stock' : 'out-of-stock' ) . '">' . esc_html( $label ) . '</p>';
 	}
 
 	return $html;

@@ -182,6 +182,8 @@ function autodex_create_default_categories() {
 		'metlice-brisaca'         => 'Metlice brisača',
 		'patosnice'               => 'Patosnice',
 		'autokozmetika'           => 'Autokozmetika',
+		'veliki-servis'           => 'Veliki servis',
+		'mali-servis'             => 'Mali servis',
 	);
 
 	foreach ( $categories as $slug => $name ) {

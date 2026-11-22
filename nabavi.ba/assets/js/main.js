@@ -188,5 +188,24 @@
 
 			event.target.value = value;
 		});
+
+		// Compact sticky header once the page is scrolled.
+		var header = document.querySelector('.nabavi-header');
+
+		if (header) {
+			var stuck = false;
+
+			var syncHeader = function () {
+				var next = window.scrollY > 24;
+
+				if (next !== stuck) {
+					stuck = next;
+					header.classList.toggle('is-stuck', stuck);
+				}
+			};
+
+			syncHeader();
+			window.addEventListener('scroll', syncHeader, { passive: true });
+		}
 	});
 })();

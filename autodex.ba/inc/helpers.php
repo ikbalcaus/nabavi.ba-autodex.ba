@@ -121,6 +121,21 @@ function autodex_is_woocommerce_active() {
 }
 
 /**
+ * Is this a fallback page-ID permalink (non-public page)?
+ *
+ * @param string $url URL.
+ * @return bool
+ */
+function autodex_is_page_id_url( $url ) {
+	if ( ! is_string( $url ) || false === strpos( $url, '?page_id=' ) ) {
+		return false;
+	}
+
+	// `?page_id=` is expected when the site uses plain permalinks.
+	return '' !== (string) get_option( 'permalink_structure' );
+}
+
+/**
  * Shop URL.
  *
  * @return string
@@ -128,7 +143,8 @@ function autodex_is_woocommerce_active() {
 function autodex_get_shop_url() {
 	if ( function_exists( 'wc_get_page_permalink' ) ) {
 		$url = wc_get_page_permalink( 'shop' );
-		if ( $url ) {
+
+		if ( $url && ! autodex_is_page_id_url( $url ) ) {
 			return $url;
 		}
 	}
@@ -145,7 +161,7 @@ function autodex_get_cart_url() {
 	if ( function_exists( 'wc_get_cart_url' ) ) {
 		$url = wc_get_cart_url();
 
-		if ( $url ) {
+		if ( $url && ! autodex_is_page_id_url( $url ) ) {
 			return $url;
 		}
 	}
@@ -162,7 +178,7 @@ function autodex_get_checkout_url() {
 	if ( function_exists( 'wc_get_checkout_url' ) ) {
 		$url = wc_get_checkout_url();
 
-		if ( $url ) {
+		if ( $url && ! autodex_is_page_id_url( $url ) ) {
 			return $url;
 		}
 	}
@@ -179,7 +195,7 @@ function autodex_get_account_url() {
 	if ( function_exists( 'wc_get_page_permalink' ) ) {
 		$url = wc_get_page_permalink( 'myaccount' );
 
-		if ( $url ) {
+		if ( $url && ! autodex_is_page_id_url( $url ) ) {
 			return $url;
 		}
 	}

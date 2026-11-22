@@ -22,6 +22,37 @@ defined( 'ABSPATH' ) || exit;
 <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Preskoči na sadržaj', 'nabavi' ); ?></a>
 
 <div id="page" class="site">
+	<?php if ( nabavi_get_phone() || nabavi_get_email() ) : ?>
+		<div class="nabavi-topbar">
+			<div class="nabavi-container nabavi-topbar__inner">
+				<div class="nabavi-topbar__contact">
+					<?php if ( nabavi_get_phone() ) : ?>
+						<a href="tel:<?php echo esc_attr( nabavi_get_phone_href() ); ?>">
+							<?php echo nabavi_get_icon( 'phone' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<span><?php echo esc_html( nabavi_get_phone() ); ?></span>
+						</a>
+					<?php endif; ?>
+
+					<?php if ( nabavi_get_phone() && nabavi_get_email() ) : ?>
+						<span class="nabavi-topbar__sep" aria-hidden="true"></span>
+					<?php endif; ?>
+
+					<?php if ( nabavi_get_email() ) : ?>
+						<a href="mailto:<?php echo esc_attr( nabavi_get_email() ); ?>">
+							<?php echo nabavi_get_icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<span><?php echo esc_html( nabavi_get_email() ); ?></span>
+						</a>
+					<?php endif; ?>
+				</div>
+
+				<div class="nabavi-topbar__links">
+					<a href="<?php echo esc_url( home_url( '/o-nama/' ) ); ?>"><?php esc_html_e( 'O nama', 'nabavi' ); ?></a>
+					<a href="<?php echo esc_url( home_url( '/kontakt/' ) ); ?>"><?php esc_html_e( 'Kontakt', 'nabavi' ); ?></a>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+
 	<header id="masthead" class="nabavi-header">
 		<div class="nabavi-container nabavi-header__inner">
 			<div class="nabavi-header__top">

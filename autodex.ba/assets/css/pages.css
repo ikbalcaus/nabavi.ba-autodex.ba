@@ -192,3 +192,202 @@
 		font-size: 15px;
 	}
 }
+
+/* --------------------------------------------------------------------------
+   Service / inquiry pages
+   -------------------------------------------------------------------------- */
+
+.autodex-inquiry {
+	margin: 8px 0 44px;
+	padding: 32px 34px 34px;
+	background: #fff;
+	border: 1px solid var(--autodex-border);
+	border-top: 3px solid var(--autodex-primary);
+	border-radius: var(--autodex-radius);
+	box-shadow: var(--autodex-shadow);
+}
+
+.autodex-inquiry__head {
+	margin: 0 0 22px;
+}
+
+.autodex-inquiry__eyebrow {
+	margin: 0 0 7px;
+	color: var(--autodex-primary);
+	font-family: var(--autodex-font-nav);
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.autodex-inquiry .autodex-inquiry__title {
+	margin: 0 0 9px;
+	color: var(--autodex-heading);
+	font-family: var(--autodex-font-nav);
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 1.15;
+	letter-spacing: .2px;
+}
+
+.autodex-inquiry__text {
+	margin: 0;
+	color: var(--autodex-text);
+	font-size: 15px;
+	line-height: 1.65;
+}
+
+.autodex-inquiry__form {
+	margin: 0;
+}
+
+.autodex-inquiry__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0 18px;
+}
+
+.autodex-inquiry__field {
+	margin: 0 0 18px;
+}
+
+.autodex-inquiry__field label {
+	display: block;
+	margin: 0 0 7px;
+	color: var(--autodex-heading);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.autodex-required {
+	color: var(--autodex-primary);
+}
+
+.autodex-inquiry__field input[type="text"],
+.autodex-inquiry__field input[type="tel"],
+.autodex-inquiry__field textarea {
+	width: 100%;
+}
+
+.autodex-inquiry__field input[type="text"],
+.autodex-inquiry__field input[type="tel"] {
+	min-height: 46px;
+	padding: 10px 14px;
+}
+
+.autodex-inquiry__field textarea {
+	min-height: 140px;
+	padding: 10px 14px;
+}
+
+.autodex-inquiry__field input[type="file"] {
+	width: 100%;
+	min-height: 46px;
+	padding: 10px 12px;
+	border: 1px dashed var(--autodex-border);
+	border-radius: var(--autodex-radius-sm);
+	background: #F7F9FB;
+	color: var(--autodex-text);
+	font-family: var(--autodex-font);
+	font-size: 14px;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.autodex-inquiry__field input[type="file"]::file-selector-button,
+.autodex-inquiry__field input[type="file"]::-webkit-file-upload-button {
+	margin-right: 12px;
+	padding: 8px 14px;
+	border: 0;
+	border-radius: 3px;
+	background: var(--autodex-primary);
+	color: #fff;
+	font-family: var(--autodex-font-nav);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: .6px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.autodex-inquiry__hint {
+	display: block;
+	margin-top: 6px;
+	color: var(--autodex-muted);
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+.autodex-inquiry__submit {
+	margin: 4px 0 0;
+}
+
+.autodex-inquiry__submit .autodex-button {
+	min-width: 220px;
+}
+
+.autodex-service-products {
+	margin-top: 48px;
+}
+
+.autodex-service-products .autodex-service-products__title {
+	margin: 0 0 24px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid var(--autodex-border);
+	color: var(--autodex-heading);
+	font-family: var(--autodex-font-nav);
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: .4px;
+	text-transform: uppercase;
+}
+
+.autodex-service-products__all {
+	margin: 28px 0 0;
+}
+
+.autodex-service-products__all a {
+	color: var(--autodex-primary);
+	font-family: var(--autodex-font-nav);
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: .6px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.autodex-service-products__all a:hover {
+	color: var(--autodex-primary-dark);
+}
+
+@media (max-width: 767px) {
+	.autodex-inquiry {
+		margin-bottom: 34px;
+		padding: 24px 20px 26px;
+	}
+
+	.autodex-inquiry .autodex-inquiry__title {
+		font-size: 26px;
+	}
+
+	.autodex-inquiry__grid {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.autodex-inquiry__submit .autodex-button {
+		width: 100%;
+	}
+
+	.autodex-service-products {
+		margin-top: 38px;
+	}
+
+	.autodex-service-products .autodex-service-products__title {
+		font-size: 25px;
+	}
+}

@@ -35,6 +35,7 @@ autodex_require( 'translations.php' );
 autodex_require( 'woocommerce.php' );
 autodex_require( 'shortcodes.php' );
 autodex_require( 'contact.php' );
+autodex_require( 'inquiry.php' );
 
 /**
  * Load optional code snippets from /snippets.

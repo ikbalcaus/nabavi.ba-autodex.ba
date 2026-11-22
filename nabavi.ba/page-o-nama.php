@@ -16,7 +16,10 @@ get_header();
 			the_post();
 			?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'nabavi-page nabavi-about' ); ?>>
-				<h1 class="screen-reader-text"><?php the_title(); ?></h1>
+				<header class="nabavi-page-head">
+					<span class="nabavi-page-head__eyebrow"><?php esc_html_e( 'Upoznajte nas', 'nabavi' ); ?></span>
+					<h1 class="nabavi-page__title"><?php the_title(); ?></h1>
+				</header>
 
 				<div class="nabavi-prose">
 					<?php if ( trim( get_the_content() ) ) : ?>

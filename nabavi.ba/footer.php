@@ -13,7 +13,9 @@ defined( 'ABSPATH' ) || exit;
 		<div class="nabavi-container nabavi-footer__inner">
 			<div class="nabavi-footer__top">
 				<div class="nabavi-footer__brand">
-					<?php nabavi_site_logo( 'footer' ); ?>
+					<div class="nabavi-footer__logo">
+						<?php nabavi_site_logo( 'header' ); ?>
+					</div>
 					<p class="nabavi-footer__text"><?php echo esc_html( nabavi_get_footer_text() ); ?></p>
 				</div>
 
@@ -45,20 +47,44 @@ defined( 'ABSPATH' ) || exit;
 					?>
 				</div>
 
+				<div class="nabavi-footer__categories">
+					<h2 class="nabavi-footer__title"><?php esc_html_e( 'Kategorije', 'nabavi' ); ?></h2>
+					<ul class="nabavi-footer__cat-list">
+						<?php
+						$footer_categories   = nabavi_get_curated_categories();
+						$footer_categories[] = array(
+							'label' => 'Ostalo',
+							'url'   => nabavi_get_category_url( 'ostalo' ),
+						);
+
+						foreach ( $footer_categories as $footer_category ) :
+							$footer_external = ! empty( $footer_category['url'] ) && false !== strpos( $footer_category['url'], 'autodex.ba' );
+							?>
+							<li><a href="<?php echo esc_url( $footer_category['url'] ); ?>"<?php echo $footer_external ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>><?php echo esc_html( $footer_category['label'] ); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+
 				<div class="nabavi-footer__contact">
 					<h2 class="nabavi-footer__title"><?php esc_html_e( 'Kontakt informacije', 'nabavi' ); ?></h2>
 					<ul class="nabavi-footer__contact-list">
 						<li>
-							<a href="tel:<?php echo esc_attr( nabavi_get_phone_href() ); ?>">
-								<strong><?php esc_html_e( 'Telefon:', 'nabavi' ); ?></strong>
-								<?php echo esc_html( nabavi_get_phone() ); ?>
-							</a>
+							<span class="nabavi-footer__contact-icon">
+								<?php echo nabavi_get_icon( 'phone' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							</span>
+							<div>
+								<strong><?php esc_html_e( 'Telefon', 'nabavi' ); ?></strong>
+								<a href="tel:<?php echo esc_attr( nabavi_get_phone_href() ); ?>"><?php echo esc_html( nabavi_get_phone() ); ?></a>
+							</div>
 						</li>
 						<li>
-							<a href="mailto:<?php echo esc_attr( nabavi_get_email() ); ?>">
-								<strong><?php esc_html_e( 'Email:', 'nabavi' ); ?></strong>
-								<?php echo esc_html( nabavi_get_email() ); ?>
-							</a>
+							<span class="nabavi-footer__contact-icon">
+								<?php echo nabavi_get_icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							</span>
+							<div>
+								<strong><?php esc_html_e( 'Email', 'nabavi' ); ?></strong>
+								<a href="mailto:<?php echo esc_attr( nabavi_get_email() ); ?>"><?php echo esc_html( nabavi_get_email() ); ?></a>
+							</div>
 						</li>
 					</ul>
 				</div>

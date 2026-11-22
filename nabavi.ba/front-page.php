@@ -1,6 +1,6 @@
 <?php
 /**
- * Front page — exact replica of the original Elementor homepage.
+ * Front page.
  *
  * @package Nabavi
  */
@@ -18,7 +18,7 @@ $hero_path  = nabavi_image_path( 'hero.png' );
 			<a class="nabavi-home__hero-link" href="<?php echo esc_url( nabavi_get_shop_url() ); ?>">
 				<?php if ( file_exists( nabavi_image_path( 'hero-1200.webp' ) ) ) : ?>
 					<picture>
-						<source type="image/webp" srcset="<?php echo esc_url( nabavi_image_url( 'hero-800.webp' ) ); ?> 800w, <?php echo esc_url( nabavi_image_url( 'hero-1200.webp' ) ); ?> 1200w, <?php echo esc_url( nabavi_image_url( 'hero-1584.webp' ) ); ?> 1584w" sizes="(max-width: 1220px) 100vw, 1180px">
+						<source type="image/webp" srcset="<?php echo esc_url( nabavi_image_url( 'hero-800.webp' ) ); ?> 800w, <?php echo esc_url( nabavi_image_url( 'hero-1200.webp' ) ); ?> 1200w, <?php echo esc_url( nabavi_image_url( 'hero-1584.webp' ) ); ?> 1584w" sizes="(max-width: 1220px) 100vw, 1240px">
 						<img
 							class="nabavi-home__hero-image"
 							src="<?php echo esc_url( nabavi_image_url( 'hero.png' ) ); ?>"
@@ -46,10 +46,25 @@ $hero_path  = nabavi_image_path( 'hero.png' );
 		</div>
 	</section>
 
+	<div class="nabavi-trustbar">
+		<div class="nabavi-container">
+			<ul class="nabavi-trustbar__list">
+				<li><?php echo nabavi_get_icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php esc_html_e( 'Provjereni proizvodi', 'nabavi' ); ?></span></li>
+				<li><?php echo nabavi_get_icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php esc_html_e( 'Sigurno plaćanje', 'nabavi' ); ?></span></li>
+				<li><?php echo nabavi_get_icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php esc_html_e( 'Dostava širom BiH', 'nabavi' ); ?></span></li>
+				<li><?php echo nabavi_get_icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php esc_html_e( 'Podrška kupcima', 'nabavi' ); ?></span></li>
+			</ul>
+		</div>
+	</div>
+
 	<?php if ( ! empty( $categories ) ) : ?>
 		<section class="nabavi-home__categories" aria-labelledby="nabavi-categories-title">
 			<div class="nabavi-container">
-				<h1 id="nabavi-categories-title" class="screen-reader-text"><?php esc_html_e( 'Kategorije proizvoda', 'nabavi' ); ?></h1>
+				<div class="nabavi-home__section-head">
+					<h2 id="nabavi-categories-title" class="nabavi-home__section-title"><?php esc_html_e( 'Kategorije proizvoda', 'nabavi' ); ?></h2>
+					<a class="nabavi-home__section-link" href="<?php echo esc_url( nabavi_get_shop_url() ); ?>"><?php esc_html_e( 'Sve kategorije', 'nabavi' ); ?> <span aria-hidden="true">→</span></a>
+				</div>
+
 				<div class="nabavi-category-grid">
 					<?php foreach ( $categories as $category ) : ?>
 						<?php $is_external = ! empty( $category['url'] ) && false !== strpos( $category['url'], 'autodex.ba' ); ?>
@@ -62,7 +77,7 @@ $hero_path  = nabavi_image_path( 'hero.png' );
 								<img
 									src="<?php echo esc_url( nabavi_image_src( $category['image'], 640 ) ); ?>"
 									srcset="<?php echo esc_attr( nabavi_image_srcset( $category['image'], 1600, array( 480, 640, 960 ) ) ); ?>"
-									sizes="(max-width: 767px) 50vw, (max-width: 1024px) 33vw, 25vw"
+									sizes="(max-width: 767px) 50vw, (max-width: 1024px) 33vw, 16vw"
 									alt="<?php echo esc_attr( $category['label'] ); ?>"
 									width="640"
 									height="360"
@@ -85,10 +100,12 @@ $hero_path  = nabavi_image_path( 'hero.png' );
 		?>
 		<section class="nabavi-home__popular" aria-labelledby="nabavi-popular-title">
 			<div class="nabavi-container">
-				<div class="nabavi-home__popular-inner">
-					<h2 id="nabavi-popular-title" class="nabavi-home__section-title"><?php esc_html_e( 'Najpopularnije', 'nabavi' ); ?></h2>
-					<?php echo nabavi_render_product_grid( $popular_ids, 5, 'nabavi-popular-grid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<div class="nabavi-home__section-head">
+					<h2 id="nabavi-popular-title" class="nabavi-home__section-title"><?php esc_html_e( 'Najpopularniji proizvodi', 'nabavi' ); ?></h2>
+					<a class="nabavi-home__section-link" href="<?php echo esc_url( nabavi_get_shop_url() ); ?>"><?php esc_html_e( 'Svi proizvodi', 'nabavi' ); ?> <span aria-hidden="true">→</span></a>
 				</div>
+
+				<?php echo nabavi_render_product_grid( $popular_ids, 5, 'nabavi-popular-grid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		</section>
 	<?php endif; ?>

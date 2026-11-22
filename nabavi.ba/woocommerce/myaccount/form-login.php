@@ -18,6 +18,10 @@ if ( function_exists( 'wc_print_notices' ) ) {
 <div class="nabavi-login">
 	<?php do_action( 'woocommerce_before_customer_login_form' ); ?>
 
+	<header class="nabavi-login__head">
+		<h2 class="nabavi-login__title"><?php esc_html_e( 'Prijava', 'nabavi' ); ?></h2>
+	</header>
+
 	<form class="woocommerce-form woocommerce-form-login login" method="post" <?php do_action( 'woocommerce_login_form_tag' ); ?>>
 		<?php do_action( 'woocommerce_login_form_start' ); ?>
 

@@ -16,10 +16,31 @@ get_header();
 			the_post();
 			?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'nabavi-page nabavi-contact-page' ); ?>>
-				<h1 class="screen-reader-text"><?php the_title(); ?></h1>
+				<header class="nabavi-page-head">
+					<span class="nabavi-page-head__eyebrow"><?php esc_html_e( 'Kontakt', 'nabavi' ); ?></span>
+					<h1 class="nabavi-page__title"><?php the_title(); ?></h1>
+					<p class="nabavi-page-head__lead"><?php esc_html_e( 'Tu smo za sva vaša pitanja o proizvodima, dostavi i narudžbama.', 'nabavi' ); ?></p>
+				</header>
 
 				<div class="nabavi-contact-layout">
 					<div class="nabavi-contact-layout__form">
+						<div class="nabavi-contact-cards">
+							<a class="nabavi-contact-card" href="tel:<?php echo esc_attr( nabavi_get_phone_href() ); ?>">
+								<span class="nabavi-contact-card__icon"><?php echo nabavi_get_icon( 'phone' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+								<span class="nabavi-contact-card__text">
+									<small><?php esc_html_e( 'Nazovite nas', 'nabavi' ); ?></small>
+									<strong><?php echo esc_html( nabavi_get_phone() ); ?></strong>
+								</span>
+							</a>
+							<a class="nabavi-contact-card" href="mailto:<?php echo esc_attr( nabavi_get_email() ); ?>">
+								<span class="nabavi-contact-card__icon"><?php echo nabavi_get_icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+								<span class="nabavi-contact-card__text">
+									<small><?php esc_html_e( 'Pišite nam', 'nabavi' ); ?></small>
+									<strong><?php echo esc_html( nabavi_get_email() ); ?></strong>
+								</span>
+							</a>
+						</div>
+
 						<?php
 						if ( trim( get_the_content() ) ) {
 							echo '<div class="nabavi-prose nabavi-contact-intro">';
