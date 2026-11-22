@@ -36,6 +36,8 @@ autodex_require( 'woocommerce.php' );
 autodex_require( 'shortcodes.php' );
 autodex_require( 'contact.php' );
 autodex_require( 'inquiry.php' );
+autodex_require( 'seo.php' );
+autodex_require( 'sitemap.php' );
 
 /**
  * Load optional code snippets from /snippets.

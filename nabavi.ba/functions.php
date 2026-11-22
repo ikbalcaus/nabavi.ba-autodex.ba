@@ -35,3 +35,5 @@ nabavi_require( 'translations.php' );
 nabavi_require( 'woocommerce.php' );
 nabavi_require( 'shortcodes.php' );
 nabavi_require( 'contact.php' );
+nabavi_require( 'seo.php' );
+nabavi_require( 'sitemap.php' );
