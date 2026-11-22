@@ -1,0 +1,194 @@
+/* ==========================================================================
+   Autodex.ba — static pages (O nama, Kontakt, generic)
+   ========================================================================== */
+
+.autodex-page-wrap {
+	padding-bottom: 30px;
+}
+
+.autodex-page {
+	min-height: 40vh;
+}
+
+.autodex-breadcrumbs--page {
+	margin: 0 0 22px;
+}
+
+.autodex-page__title {
+	margin: 0 0 25px;
+	font-size: 34px;
+}
+
+.autodex-about .autodex-prose {
+	max-width: 100%;
+	font-size: 16px;
+	line-height: 1.8;
+}
+
+.autodex-about .autodex-prose p {
+	margin-bottom: 1.25em;
+}
+
+/* --------------------------------------------------------------------------
+   Contact
+   -------------------------------------------------------------------------- */
+
+.autodex-contact-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 40px;
+	align-items: start;
+	margin-top: 5px;
+}
+
+.autodex-contact-layout__form {
+	min-width: 0;
+	max-width: 560px;
+}
+
+.autodex-contact-intro {
+	margin-bottom: 22px;
+}
+
+.autodex-contact-form {
+	width: 100%;
+}
+
+.autodex-contact-form .autodex-form-row {
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+.autodex-contact-form .autodex-form-row--two {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 0 0 20px;
+	padding: 0;
+	border: 0;
+}
+
+.autodex-contact-form .autodex-form-row--two legend {
+	display: block;
+	width: 100%;
+	margin: 0 0 8px;
+	padding: 0;
+	color: var(--autodex-heading);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.autodex-contact-form .autodex-form-row--two p {
+	flex: 1 1 calc(50% - 6px);
+	margin: 0;
+}
+
+.autodex-contact-form label {
+	display: block;
+	margin: 0 0 8px;
+	color: var(--autodex-heading);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.autodex-contact-form .required {
+	color: var(--autodex-primary);
+}
+
+.autodex-contact-form input[type="text"],
+.autodex-contact-form input[type="email"],
+.autodex-contact-form input[type="tel"] {
+	height: 40px;
+	min-height: 40px;
+	padding: 8px 12px;
+	border: 1px solid #D9DEE4;
+	border-radius: 3px;
+	font-size: 15px;
+}
+
+.autodex-contact-form textarea {
+	min-height: 160px;
+	padding: 10px 12px;
+	border: 1px solid #D9DEE4;
+	border-radius: 3px;
+	font-size: 15px;
+}
+
+.autodex-contact-form .autodex-form-submit {
+	margin: 0;
+}
+
+.autodex-contact-form .autodex-form-submit button {
+	width: 100%;
+	min-height: 40px;
+	padding: 8px 20px;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.autodex-hp {
+	position: absolute !important;
+	left: -9999px !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.autodex-contact-layout__map {
+	min-width: 0;
+	width: 100%;
+	background: #E9EDF0;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.autodex-contact-layout__map iframe {
+	display: block;
+	width: 100%;
+	min-height: 470px;
+	border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+	.autodex-contact-layout {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+
+	.autodex-contact-layout__form {
+		max-width: 100%;
+	}
+
+	.autodex-contact-layout__map iframe {
+		min-height: 360px;
+	}
+}
+
+@media (max-width: 767px) {
+	.autodex-page-wrap {
+		padding-top: 20px;
+	}
+
+	.autodex-page__title {
+		font-size: 28px;
+	}
+
+	.autodex-contact-form .autodex-form-row--two {
+		gap: 10px;
+	}
+
+	.autodex-contact-form .autodex-form-row--two p {
+		flex: 1 1 100%;
+	}
+
+	.autodex-contact-form label,
+	.autodex-contact-form .autodex-form-row--two legend {
+		font-size: 15px;
+	}
+}

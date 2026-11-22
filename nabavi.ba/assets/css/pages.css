@@ -1,0 +1,194 @@
+/* ==========================================================================
+   Nabavi.ba — static pages (O nama, Kontakt, generic)
+   ========================================================================== */
+
+.nabavi-page-wrap {
+	padding-bottom: 30px;
+}
+
+.nabavi-page {
+	min-height: 40vh;
+}
+
+.nabavi-breadcrumbs--page {
+	margin: 0 0 22px;
+}
+
+.nabavi-page__title {
+	margin: 0 0 25px;
+	font-size: 34px;
+}
+
+.nabavi-about .nabavi-prose {
+	max-width: 100%;
+	font-size: 16px;
+	line-height: 1.8;
+}
+
+.nabavi-about .nabavi-prose p {
+	margin-bottom: 1.25em;
+}
+
+/* --------------------------------------------------------------------------
+   Contact
+   -------------------------------------------------------------------------- */
+
+.nabavi-contact-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 40px;
+	align-items: start;
+	margin-top: 5px;
+}
+
+.nabavi-contact-layout__form {
+	min-width: 0;
+	max-width: 560px;
+}
+
+.nabavi-contact-intro {
+	margin-bottom: 22px;
+}
+
+.nabavi-contact-form {
+	width: 100%;
+}
+
+.nabavi-contact-form .nabavi-form-row {
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+.nabavi-contact-form .nabavi-form-row--two {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 0 0 20px;
+	padding: 0;
+	border: 0;
+}
+
+.nabavi-contact-form .nabavi-form-row--two legend {
+	display: block;
+	width: 100%;
+	margin: 0 0 8px;
+	padding: 0;
+	color: var(--nabavi-heading);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.nabavi-contact-form .nabavi-form-row--two p {
+	flex: 1 1 calc(50% - 6px);
+	margin: 0;
+}
+
+.nabavi-contact-form label {
+	display: block;
+	margin: 0 0 8px;
+	color: var(--nabavi-heading);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.nabavi-contact-form .required {
+	color: var(--nabavi-orange);
+}
+
+.nabavi-contact-form input[type="text"],
+.nabavi-contact-form input[type="email"],
+.nabavi-contact-form input[type="tel"] {
+	height: 40px;
+	min-height: 40px;
+	padding: 8px 12px;
+	border: 1px solid #D9DEE4;
+	border-radius: 3px;
+	font-size: 15px;
+}
+
+.nabavi-contact-form textarea {
+	min-height: 160px;
+	padding: 10px 12px;
+	border: 1px solid #D9DEE4;
+	border-radius: 3px;
+	font-size: 15px;
+}
+
+.nabavi-contact-form .nabavi-form-submit {
+	margin: 0;
+}
+
+.nabavi-contact-form .nabavi-form-submit button {
+	width: 100%;
+	min-height: 40px;
+	padding: 8px 20px;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.nabavi-hp {
+	position: absolute !important;
+	left: -9999px !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.nabavi-contact-layout__map {
+	min-width: 0;
+	width: 100%;
+	background: #E9EDF0;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.nabavi-contact-layout__map iframe {
+	display: block;
+	width: 100%;
+	min-height: 470px;
+	border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+	.nabavi-contact-layout {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+
+	.nabavi-contact-layout__form {
+		max-width: 100%;
+	}
+
+	.nabavi-contact-layout__map iframe {
+		min-height: 360px;
+	}
+}
+
+@media (max-width: 767px) {
+	.nabavi-page-wrap {
+		padding-top: 20px;
+	}
+
+	.nabavi-page__title {
+		font-size: 28px;
+	}
+
+	.nabavi-contact-form .nabavi-form-row--two {
+		gap: 10px;
+	}
+
+	.nabavi-contact-form .nabavi-form-row--two p {
+		flex: 1 1 100%;
+	}
+
+	.nabavi-contact-form label,
+	.nabavi-contact-form .nabavi-form-row--two legend {
+		font-size: 15px;
+	}
+}

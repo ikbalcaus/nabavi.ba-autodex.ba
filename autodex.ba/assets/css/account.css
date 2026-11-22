@@ -1,0 +1,227 @@
+/* ==========================================================================
+   Autodex.ba — login and account details
+   ========================================================================== */
+
+.autodex-login {
+	width: 100%;
+	max-width: 450px;
+	margin: 26px auto 35px;
+	flex: 1 1 100%;
+}
+
+.woocommerce .autodex-login form.login,
+.woocommerce .autodex-login form.woocommerce-form-login,
+.woocommerce .autodex-login form.woocommerce-form-register,
+.autodex-login .woocommerce-form-login,
+.autodex-login .woocommerce-form-register {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+.autodex-login .woocommerce-form-row {
+	margin: 0 0 20px;
+}
+
+.autodex-login label {
+	display: block;
+	margin-bottom: 7px;
+	color: var(--autodex-text);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.woocommerce .autodex-login input[type="text"],
+.woocommerce .autodex-login input[type="email"],
+.woocommerce .autodex-login input[type="password"],
+.autodex-login input[type="text"],
+.autodex-login input[type="email"],
+.autodex-login input[type="password"] {
+	height: 42px;
+	min-height: 42px;
+	padding: 8px 12px;
+	border: 1px solid #D9DEE4 !important;
+	border-radius: 3px;
+	background: #fff !important;
+	color: var(--autodex-text);
+	font-size: 15px;
+	box-shadow: none;
+}
+
+.autodex-login input[type="text"]:focus,
+.autodex-login input[type="email"]:focus,
+.autodex-login input[type="password"]:focus {
+	border-color: var(--autodex-primary);
+}
+
+.autodex-login .password-input {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.autodex-login .password-input input {
+	width: 100%;
+	padding-right: 44px;
+}
+
+.autodex-login .show-password-input {
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--autodex-primary);
+	transform: translateY(-50%);
+}
+
+.autodex-login .show-password-input svg {
+	width: 20px;
+	height: 20px;
+}
+
+.autodex-login .show-password-input::before,
+.autodex-login .show-password-input::after {
+	display: none !important;
+	content: none !important;
+}
+
+.autodex-login__row {
+	display: block;
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+.autodex-login .woocommerce-form__label-for-checkbox {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 20px;
+	color: var(--autodex-text);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.autodex-login .woocommerce-form__input-checkbox {
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	accent-color: var(--autodex-primary);
+}
+
+.autodex-login .woocommerce-form-login__submit,
+.autodex-login .woocommerce-form-register__submit {
+	display: flex;
+	width: 100%;
+	min-height: 40px;
+	margin: 0;
+	padding: 8px 20px;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.autodex-login .woocommerce-LostPassword {
+	margin: 20px 0 0;
+	padding: 0;
+	font-size: 16px;
+}
+
+.autodex-login .woocommerce-LostPassword a {
+	color: var(--autodex-primary);
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.autodex-login .woocommerce-LostPassword a:hover {
+	color: var(--autodex-primary-dark);
+}
+
+.autodex-register {
+	margin-top: 45px;
+	padding-top: 35px;
+	border-top: 1px solid #E5E8EC;
+}
+
+.autodex-register__title {
+	margin: 0 0 22px;
+	font-size: 24px;
+}
+
+.autodex-login .woocommerce-privacy-policy-text {
+	display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Logged-in account
+   -------------------------------------------------------------------------- */
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-Addresses h3 {
+	font-size: 18px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content address {
+	margin: 0;
+	font-style: normal;
+	line-height: 1.7;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAccountForm fieldset {
+	margin: 25px 0 0;
+	padding: 20px;
+	border: 1px solid #E5E8EC;
+	border-radius: 4px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAccountForm legend {
+	padding: 0 8px;
+	color: var(--autodex-heading);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAccountForm em {
+	display: block;
+	margin-top: 4px;
+	color: var(--autodex-muted);
+	font-size: 13px;
+	font-style: normal;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-Button {
+	margin-top: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+	.autodex-login {
+		margin-top: 15px;
+		margin-bottom: 25px;
+	}
+
+	.autodex-login label {
+		font-size: 15px;
+	}
+
+	.autodex-login .woocommerce-form__label-for-checkbox {
+		font-size: 15px;
+	}
+
+	.autodex-login .woocommerce-LostPassword {
+		font-size: 15px;
+	}
+}

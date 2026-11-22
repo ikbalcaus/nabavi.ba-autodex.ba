@@ -1,0 +1,20 @@
+/*
+Theme Name: Nabavi.ba
+Theme URI: https://nabavi.ba/
+Author: Nabavi.ba
+Author URI: https://nabavi.ba/
+Description: Custom, Elementor-free WooCommerce theme built for Nabavi.ba. Replicates the original storefront design with a custom header, homepage, shop archive, product page, cart, checkout and account area.
+Version: 1.0.0
+Requires at least: 6.2
+Tested up to: 7.1
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: nabavi
+Tags: e-commerce, woocommerce, custom-colors, custom-logo, custom-menu, featured-images, translation-ready
+*/
+
+/*
+ * The compiled theme styles live in /assets/css/.
+ * This file is intentionally small: WordPress requires style.css to exist.
+ */
