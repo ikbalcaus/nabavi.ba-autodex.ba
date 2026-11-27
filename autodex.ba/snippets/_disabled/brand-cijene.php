@@ -394,6 +394,14 @@ function bpa_find_low_profit_items( $min_km ) {
 
 				$price = $t->get_price( 'edit' ); // Original database price, without markup.
 
+				// Trend Auto proizvodi već imaju uračunat markup u sačuvanoj cijeni,
+				// pa se za obračun zarade koristi sačuvana osnovna cijena.
+				$trend_base = get_post_meta( $item_id, '_trend_base_price', true );
+
+				if ( '' !== $trend_base && is_numeric( $trend_base ) ) {
+					$price = (float) $trend_base;
+				}
+
 				if ( '' === $price || ! is_numeric( $price ) ) {
 					continue;
 				}
@@ -610,6 +618,26 @@ function bpa_adjust_price( $price, $product ) {
 
 	if ( '' === $price || null === $price || ! is_numeric( $price ) ) {
 		return $price;
+	}
+
+	// Proizvodi iz Trend Auto feeda već imaju finalnu cijenu (osnovna cijena +
+	// procenat brenda + PDV). Nikada ne primjenjuj markup drugi put.
+	if ( defined( 'TREND_AUTO_SYNCING' ) && TREND_AUTO_SYNCING ) {
+		return $price;
+	}
+
+	if ( $product instanceof WC_Product ) {
+		$guard_id = $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id();
+
+		if ( $guard_id ) {
+			if ( '' !== (string) get_post_meta( $guard_id, '_trend_base_price', true ) ) {
+				return $price;
+			}
+
+			if ( get_post_meta( $guard_id, '_trend_price_final', true ) ) {
+				return $price;
+			}
+		}
 	}
 
 	$multiplier = bpa_get_product_multiplier( $product );
